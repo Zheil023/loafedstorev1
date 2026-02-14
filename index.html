@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoafedSMP | Official Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-sans antialiased bg-[#09090b] text-[#e4e4e7]">
+
+    <div id="overlay" class="overlay fixed inset-0 z-40" onclick="closeAll()"></div>
+
+    <nav class="nav-glass fixed top-0 w-full z-50 px-6 py-4 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="logo-box">🍞</div>
+                <span class="text-xl font-black uppercase tracking-tighter">
+                    Loafed<span class="text-loaf-gold">SMP</span>
+                </span>
+            </div>
+            
+            <div class="hidden md:flex gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">
+                <a href="https://discord.gg/RThGYYDCMf" target="_blank" class="hover:text-white transition">Discord</a>
+                <a href="#store" class="nav-link transition">Store</a>
+                <a href="#rules" class="nav-link transition">Rules</a>
+                <a href="#founders" class="nav-link transition">Founders</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button onclick="toggleCart()" class="relative p-2 hover:bg-zinc-800 rounded-full transition">
+                    🛒 <span id="cart-count" class="cart-badge">0</span>
+                </button>
+                <button id="ip-btn" onclick="copyIP()" class="join-btn min-w-[120px]">Join Server</button>
+            </div>
+        </div>
+    </nav>
+
+    <header id="store" class="pt-44 pb-20 px-6 text-center">
+        <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tight uppercase">
+            Fresh <span class="text-gradient">Ranks</span>
+        </h1>
+        <p class="text-zinc-400 text-lg max-w-xl mx-auto font-medium">
+            Support the anarchy. Unlock power. Prices in Philippine Pesos (₱).
+        </p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-32">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="store-card bg-zinc-900/40 border border-zinc-800 rounded-2xl p-6 flex flex-col">
+                <div class="item-preview">🥯</div>
+                <h3 class="text-xl font-black mb-1 uppercase text-white font-mono">Pandesal</h3>
+                <p class="text-zinc-500 text-[10px] mb-6 uppercase font-bold tracking-widest">Entry Tier</p>
+                <ul class="text-zinc-400 text-sm mb-8 space-y-3 flex-grow font-mono">
+                    <li>• /nick</li>
+                    <li>• /hat</li>
+                    <li>• /recipe</li>
+                    <li>• /depth</li>
+                    <li class="text-loaf-gold font-bold">• /kit pandesal</li>
+                </ul>
+                <div class="flex justify-between items-center mt-auto">
+                    <span class="text-2xl font-black text-white">₱80</span>
+                    <button onclick="addToCart('Pandesal Rank', 80)" class="add-btn">Add</button>
+                </div>
+            </div>
+
+            <div class="store-card bg-zinc-900/40 border border-zinc-800 rounded-2xl p-6 flex flex-col">
+                <div class="item-preview">🥥</div>
+                <h3 class="text-xl font-black mb-1 uppercase text-loaf-gold font-mono">Pandecoco</h3>
+                <p class="text-zinc-500 text-[10px] mb-6 uppercase font-bold tracking-widest">Sweet Tier</p>
+                <ul class="text-zinc-400 text-sm mb-8 space-y-3 flex-grow font-mono">
+                    <li>• /workbench</li>
+                    <li>• /ext</li>
+                    <li>• /condense</li>
+                    <li>• /near</li>
+                    <li class="text-loaf-gold font-bold">• /kit pandecoco</li>
+                </ul>
+                <div class="flex justify-between items-center mt-auto">
+                    <span class="text-2xl font-black text-white">₱150</span>
+                    <button onclick="addToCart('Pandecoco Rank', 150)" class="add-btn">Add</button>
+                </div>
+            </div>
+
+            <div class="store-card bg-zinc-900/60 border border-loaf-gold/30 rounded-2xl p-6 flex flex-col shadow-lg shadow-loaf-gold/5">
+                <div class="item-preview">🍞</div>
+                <h3 class="text-xl font-black mb-1 uppercase text-loaf-gold font-mono">Loafed</h3>
+                <p class="text-zinc-500 text-[10px] mb-6 uppercase font-bold tracking-widest">Premium Tier</p>
+                <ul class="text-zinc-400 text-sm mb-8 space-y-3 flex-grow font-mono">
+                    <li>• /feed</li>
+                    <li>• /enderchest</li>
+                    <li>• /repair</li>
+                    <li>• /ignore</li>
+                    <li class="text-loaf-gold font-bold">• /kit loafed</li>
+                </ul>
+                <div class="flex justify-between items-center mt-auto">
+                    <span class="text-2xl font-black text-white">₱220</span>
+                    <button onclick="addToCart('Loafed Rank', 220)" class="add-btn-special">Add</button>
+                </div>
+            </div>
+
+            <div class="store-card bg-gradient-to-br from-zinc-900 to-zinc-800 border-2 border-loaf-gold rounded-2xl p-6 flex flex-col relative overflow-hidden">
+                <div class="absolute -top-1 -right-8 bg-loaf-gold text-black text-[9px] font-black px-10 py-1 rotate-45 uppercase">Elite</div>
+                <div class="item-preview">🥖🔥</div>
+                <h3 class="text-xl font-black mb-1 uppercase text-loaf-gold font-mono">Loafed+</h3>
+                <p class="text-zinc-400 text-[10px] mb-6 uppercase font-black tracking-widest">Bakery Founder</p>
+                <ul class="text-zinc-300 text-sm mb-8 space-y-3 flex-grow font-mono font-bold">
+                    <li>• /heal</li>
+                    <li>• /repair all</li>
+                    <li>• /fly</li>
+                    <li>• /invsee</li>
+                    <li class="text-white">• /kit loafedplus</li>
+                </ul>
+                <div class="flex justify-between items-center mt-auto">
+                    <span class="text-2xl font-black text-white">₱300</span>
+                    <button onclick="addToCart('Loafed+ Rank', 300)" class="add-btn-special">Add</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section id="rules" class="max-w-4xl mx-auto px-6 py-24 border-t border-zinc-900">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-black uppercase tracking-widest text-white mb-4">The <span class="text-loaf-gold">Mandates</span></h2>
+        </div>
+        <div class="grid gap-6">
+            <div class="rule-box">
+                <div class="rule-num">01</div>
+                <div>
+                    <h4 class="text-white font-bold uppercase mb-1">Total War</h4>
+                    <p class="text-zinc-400 text-sm font-mono">Griefing, raiding, and stealing are allowed. Secure your loot or lose it.</p>
+                </div>
+            </div>
+            <div class="rule-box">
+                <div class="rule-num">02</div>
+                <div>
+                    <h4 class="text-white font-bold uppercase mb-1">No Lag Machines</h4>
+                    <p class="text-zinc-400 text-sm font-mono">Do not intentionally crash the server. Play fair.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="founders" class="max-w-5xl mx-auto px-6 py-24 border-t border-zinc-900">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-black uppercase tracking-widest text-white mb-4">The <span class="text-loaf-gold">Founders</span></h2>
+        </div>
+        <div class="flex flex-wrap justify-center gap-16">
+            <div class="text-center group">
+                <div class="founder-photo-container">
+                    <img src="2.png" alt="WhyNavi_" class="founder-photo">
+                </div>
+                <h3 class="text-xl font-black text-white mt-6 uppercase">WhyNavi_</h3>
+                <p class="text-loaf-gold font-bold text-xs uppercase mt-1">(Bread)</p>
+            </div>
+            <div class="text-center group">
+                <div class="founder-photo-container">
+                    <img src="1.png" alt="ItsZheil" class="founder-photo">
+                </div>
+                <h3 class="text-xl font-black text-white mt-6 uppercase">ItsZheil</h3>
+                <p class="text-loaf-gold font-bold text-xs uppercase mt-1">Co-Founder</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="cart-drawer" class="cart-drawer fixed right-0 top-0 h-full w-full md:w-96 bg-zinc-950 z-50 p-8 flex flex-col">
+        <div class="flex justify-between items-center mb-10 border-b border-zinc-900 pb-6">
+            <h2 class="text-2xl font-black uppercase text-loaf-gold italic">Basket</h2>
+            <button onclick="toggleCart()" class="text-zinc-500 hover:text-white text-3xl">&times;</button>
+        </div>
+        <div id="cart-items" class="flex-grow space-y-4 overflow-y-auto font-mono text-sm">
+            <p class="text-zinc-500 text-center italic py-10">Basket is empty.</p>
+        </div>
+        <div class="pt-6 mt-6 border-t border-zinc-900">
+            <div class="flex justify-between text-2xl font-black mb-6">
+                <span class="uppercase text-xs text-zinc-500 mt-2 tracking-widest">Total</span>
+                <span id="cart-total" class="text-loaf-gold">₱0</span>
+            </div>
+            <button onclick="showPurchasePopup()" class="checkout-btn">Purchase Now</button>
+        </div>
+    </div>
+
+    <div id="purchase-modal" class="fixed inset-0 z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 px-6">
+        <div class="bg-zinc-900 border border-loaf-gold/50 p-8 rounded-2xl max-w-sm w-full text-center shadow-2xl transform scale-90 transition-all duration-300" id="modal-content">
+            <div class="text-5xl mb-4">🎫</div>
+            <h2 class="text-2xl font-black text-white uppercase mb-2">Join Discord</h2>
+            <p class="text-zinc-400 text-sm mb-8 font-mono">To complete your purchase, please join our Discord and **open a ticket** in the support channel.</p>
+            <div class="flex flex-col gap-3">
+                <a href="https://discord.gg/RThGYYDCMf" target="_blank" class="bg-loaf-gold text-black py-3 rounded-xl font-black uppercase tracking-widest text-sm hover:bg-white transition">Go to Discord</a>
+                <button onclick="closeModal()" class="text-zinc-500 text-xs font-bold uppercase tracking-widest hover:text-white mt-2">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-12 text-center border-t border-zinc-900">
+        <p class="text-zinc-600 text-[10px] uppercase tracking-[0.3em]">© 2026 LoafedSMP • Anarchy Experience</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
